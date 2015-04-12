@@ -62,7 +62,7 @@ module.exports = function(grunt) {
           async.eachSeries(hosts, function (host, cb) {
             
             var cmd = format('ssh -o "StrictHostKeyChecking no" -p %s %s@%s ' + 
-                             '"[ -d %s ] || echo setup"', 
+                             '"[ -d %s/current ] || echo setup"',
                              port, targetConf.user, host, targetConf.path);
             
             exec(cmd, function (err, stdout, stderr) {

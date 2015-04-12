@@ -15,10 +15,6 @@ module.exports = function(grunt) {
       }
     },
 
-    clean: {
-      test: ['.tmp'],
-    },
-
     pm2deploy: {
       options: {
         ecosystemFile: 'ecosystem.json'
@@ -39,12 +35,11 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
 
   grunt.registerTask('lint', ['jshint']);
-  grunt.registerTask('test', ['clean', 'mochaTest']);
+  grunt.registerTask('test', ['mochaTest']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['lint', 'test']);
