@@ -25,7 +25,7 @@ module.exports = function (cwd, done) {
         session.once('exec', function(accept, reject, info) {
           
           var stream = accept();
-          var sh = spawn('sh', ['-c', info.command], {
+          var sh = spawn('bash', ['-c', info.command], {
             cwd: process.env.HOME,
           });
           console.log(info.command);
