@@ -25,7 +25,6 @@ module.exports = function (cwd, done) {
         session.once('exec', function(accept, reject, info) {
           
           var stream = accept();
-          
           var sh = spawn('sh', ['-c', info.command], {
             cwd: cwd
           });
@@ -35,7 +34,7 @@ module.exports = function (cwd, done) {
           });
 
           sh.stderr.on('data', function (data) {
-            stream.stderr.write(data); 
+            stream.write(data);
           });
 
           sh.on('close', function (code) {
