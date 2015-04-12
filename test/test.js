@@ -37,7 +37,6 @@ describe('pm2deploy', function () {
   });
 
   it('should generate config file for given env', function (done) {
-    console.log(grunt.config.get('pm2deploy'));
     runTask.task('pm2deploy:development', grunt.config.get('pm2deploy')).run(function () {
       console.log(arguments); 
     });
