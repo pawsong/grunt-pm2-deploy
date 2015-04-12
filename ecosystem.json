@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "test",
+    "name": "grunt-pm2-deploy-test",
     "script": "test/fixtures/app.js"
   }],
   "deploy": {
@@ -9,16 +9,16 @@
       "host": "127.0.0.1",
       "ref": "origin/master",
       "repo": "https://github.com/gifff/grunt-pm2-deploy.git",
-      "path": "~/.tmp/development",
-      "post-deploy": "~/node_modules/pm2/bin/pm2 startOrRestart ecosystem.json --env development"
+      "path": "/tmp/development",
+      "post-deploy": "npm install && node_modules/pm2/bin/pm2 startOrRestart ecosystem.json --env development"
     },
     "production": {
       "user": "node",
       "host": "127.0.0.1",
       "ref": "origin/master",
       "repo": "https://github.com/gifff/grunt-pm2-deploy.git",
-      "path": "~/.tmp/production",
-      "post-deploy": "~/node_modules/pm2/bin/pm2 startOrRestart ecosystem.json --env production"
+      "path": "/tmp/production",
+      "post-deploy": "npm install && node_modules/pm2/bin/pm2 startOrRestart ecosystem.json --env production"
     }
   }
 }
