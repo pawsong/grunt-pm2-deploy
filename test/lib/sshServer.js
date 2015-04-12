@@ -28,7 +28,7 @@ module.exports = function (cwd, done) {
           var sh = spawn('sh', ['-c', info.command], {
             cwd: process.env.HOME,
           });
-
+          console.log(info.command);
           sh.stdout.on('data', function (data) {
             stream.write(data); 
           });
