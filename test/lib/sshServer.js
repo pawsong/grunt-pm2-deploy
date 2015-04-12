@@ -28,7 +28,9 @@ module.exports = function (cwd, done) {
           var sh = spawn('sh', ['-c', info.command], {
             cwd: cwd
           });
-          
+
+          console.log('cmd: %s', info.command);
+
           sh.stdout.on('data', function (data) {
             stream.write(data); 
           });
