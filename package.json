@@ -1,0 +1,45 @@
+{
+  "name": "grunt-pm2-deploy",
+  "version": "0.1.0",
+  "description": "Deploy node application with pm2-deploy",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "Song Seung Geun <giff.song@gmail.com>",
+  "repository": "gifff/grunt-pm2-deploy",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-jshint": "^0.11.1",
+    "grunt-mocha-test": "^0.12.7",
+    "grunt-run-task": "^0.1.2",
+    "mocha": "^2.2.4",
+    "pm2": "^0.12.10",
+    "ssh2": "^0.4.6"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "clone": "^1.0.2",
+    "extend": "^2.0.0",
+    "indent-string": "^1.2.1",
+    "lodash": "^3.6.0",
+    "mkdirp": "^0.5.0",
+    "pm2-deploy": "^0.1.2",
+    "shelljs": "^0.4.0"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.0"
+  },
+  "keywords": [
+    "grunt",
+    "gruntplugin",
+    "pm2",
+    "deploy"
+  ],
+  "files": [
+    "tasks"
+  ]
+}
