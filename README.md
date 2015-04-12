@@ -57,8 +57,8 @@ As for this ecosystem.json,
 these commands are available:
 
 ```shell
-$ grunt pm2deploy:development # deploy using production env
-$ grunt pm2deploy:production # deploy using dev env
+$ grunt pm2deploy:production # deploy using production env
+$ grunt pm2deploy:dev # deploy using dev env
 ```
 
 ## Installation
