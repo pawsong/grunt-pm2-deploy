@@ -29,8 +29,6 @@ module.exports = function (cwd, done) {
             cwd: process.env.HOME,
           });
 
-          console.log('cmd: %s', info.command);
-
           sh.stdout.on('data', function (data) {
             stream.write(data); 
           });
