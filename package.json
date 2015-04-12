@@ -18,6 +18,7 @@
     "grunt-run-task": "^0.1.2",
     "mocha": "^2.2.4",
     "pm2": "^0.12.10",
+    "request": "^2.55.0",
     "ssh2": "^0.4.6"
   },
   "dependencies": {
