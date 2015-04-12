@@ -27,6 +27,9 @@ module.exports = function(grunt) {
 
     // Unit tests.
     mochaTest: { 
+      options: {
+        timeout: 60 * 1000
+      },
       test: ['test/test.js']
     }
 
