@@ -1,7 +1,7 @@
 {
   "apps": [{
     "name": "grunt-pm2-deploy-test",
-    "script": "test/fixtures/app.js"
+    "script": "test/fixtures/server.js"
   }],
   "deploy": {
     "development": {
