@@ -5,11 +5,12 @@
 var expect = require('chai').expect;
 
 var grunt = require('grunt'),
-    path = require('path'),
     fs = require('fs'),
+    async = require('async'),
+    pm2 = require('pm2'),
+    path = require('path'),
     runTask = require('grunt-run-task'),
-    request = require('request'),
-    format = require('util').format;
+    request = require('request');
 
 var sshSrv = require('./lib/sshServer');
 
@@ -68,6 +69,28 @@ describe('pm2deploy', function () {
         return done();
       })
     });
+  });
+
+  after(function (done) {
+
+    async.series([
+
+      // Delete pm2 process
+      function (callback) {
+        pm2.connect(callback);
+      },
+      function (callback) {
+        pm2.delete('grunt-pm2-deploy', callback);
+      },
+      function (callback) {
+        pm2.disconnect(callback);
+      },
+
+      // Remove deployed files
+      function (callback) {
+        fs.unlink('/tmp/grunt-pm2-deploy', callback);
+      }
+    ], done);
   });
 });
 
