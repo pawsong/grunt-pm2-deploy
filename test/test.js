@@ -41,7 +41,9 @@ describe('pm2deploy', function () {
       function (callback) {
         rimraf('/tmp/grunt-pm2-deploy', callback);
       }
-    ], done);
+    ], function (err) {
+      done(err);
+    });
   }
 
   before(function (done) {
