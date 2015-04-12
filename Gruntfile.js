@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       all: [
         'Gruntfile.js',
         'tasks/*.js',
-        '<%= mochaTest.test %>'
+        'test/**/*.js'
       ],
       options: {
         jshintrc: '.jshintrc'
