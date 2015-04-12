@@ -25,7 +25,8 @@ module.exports = function(grunt) {
 
       // Check if files exist
       if (!fs.existsSync(ecosystemFile)) {
-        grunt.log.warn('Cannot find ecosystem file: %s', options.ecosystemFile); 
+        grunt.log.warn('Cannot find ecosystem file: %s',
+                       options.ecosystemFile);
         return false;
       }
 
@@ -34,8 +35,15 @@ module.exports = function(grunt) {
       
       var deployConf = ecosystem.deploy;
       if (!target || !deployConf[target]) {
-        grunt.log.warn('Target is invalid. Target must be an env in ecosystem file');
-        grunt.log.warn('Available targets: [ %s ]', Object.keys(deployConf).join(', '));
+
+        grunt.log.warn(
+          'Target is invalid. Target must be an env in ecosystem file'
+        );
+
+        grunt.log.warn(
+          'Available targets: [ %s ]', Object.keys(deployConf).join(', ')
+        );
+
         return false; 
       }
 
@@ -54,10 +62,10 @@ module.exports = function(grunt) {
 
           var targetConf = deployConf[target];
         
-          var hosts = Array.isArray(targetConf.host) ? targetConf.host : [targetConf.host];
-          var targetPath = targetConf.path;
+          var hosts = Array.isArray(targetConf.host) ? targetConf.host
+                                                     : [targetConf.host];
 
-          var port = targetConf.port || "22"; 
+          var port = targetConf.port || '22';
 
           async.eachSeries(hosts, function (host, cb) {
             

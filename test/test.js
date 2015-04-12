@@ -1,6 +1,6 @@
 'use strict';
 
-/* global describe, it */
+/* global describe, it, before, after */
 
 var expect = require('chai').expect;
 
@@ -89,7 +89,9 @@ describe('pm2deploy', function () {
         function (response, body, callback) {
 
           if (response.statusCode !== 200) {
-            return callback(new Error('Invalid statusCode: ' + response.statusCode));
+            return callback(
+              new Error('Invalid statusCode: ' + response.statusCode)
+            );
           }
 
           try {

@@ -1,9 +1,9 @@
+'use strict';
+
 var fs = require('fs'),
-    path = require('path'),
     spawn = require('child_process').spawn;
 
 var ssh2 = require('ssh2'),
-    utils = ssh2.utils,
     Server = ssh2.Server;
 
 module.exports = function (cwd, done) {
@@ -17,7 +17,7 @@ module.exports = function (cwd, done) {
       ctx.accept();
     }).on('ready', function() {
 
-      client.on('session', function(accept, reject) {
+      client.on('session', function(accept) {
 
         var session = accept();
 
