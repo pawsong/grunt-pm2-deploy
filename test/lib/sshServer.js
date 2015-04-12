@@ -26,7 +26,10 @@ module.exports = function (cwd, done) {
           
           var stream = accept();
           var sh = spawn('sh', ['-c', info.command], {
-            cwd: cwd
+            cwd: cwd,
+            env: {
+              HOME: cwd
+            }
           });
 
           console.log('cmd: %s', info.command);

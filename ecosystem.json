@@ -9,7 +9,7 @@
       "host": "127.0.0.1",
       "ref": "origin/master",
       "repo": "https://github.com/gifff/grunt-pm2-deploy.git",
-      "path": ".tmp/development",
+      "path": "~/.tmp/development",
       "post-deploy": "node_modules/pm2/bin/pm2 startOrRestart ecosystem.json --env development"
     },
     "production": {
@@ -17,7 +17,7 @@
       "host": "127.0.0.1",
       "ref": "origin/master",
       "repo": "https://github.com/gifff/grunt-pm2-deploy.git",
-      "path": ".tmp/production",
+      "path": "~/.tmp/production",
       "post-deploy": "node_modules/pm2/bin/pm2 startOrRestart ecosystem.json --env production"
     }
   }
