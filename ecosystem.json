@@ -10,7 +10,7 @@
       "ref": "origin/master",
       "repo": "https://github.com/gifff/grunt-pm2-deploy.git",
       "path": "~/.tmp/development",
-      "post-deploy": "node_modules/pm2/bin/pm2 startOrRestart ecosystem.json --env development"
+      "post-deploy": "~/node_modules/pm2/bin/pm2 startOrRestart ecosystem.json --env development"
     },
     "production": {
       "user": "node",
@@ -18,7 +18,7 @@
       "ref": "origin/master",
       "repo": "https://github.com/gifff/grunt-pm2-deploy.git",
       "path": "~/.tmp/production",
-      "post-deploy": "node_modules/pm2/bin/pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy": "~/node_modules/pm2/bin/pm2 startOrRestart ecosystem.json --env production"
     }
   }
 }
