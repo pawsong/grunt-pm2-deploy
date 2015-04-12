@@ -5,7 +5,7 @@
 var expect = require('chai').expect;
 
 var grunt = require('grunt'),
-    fs = require('fs'),
+    rimraf = require('rimraf'),
     async = require('async'),
     pm2 = require('pm2'),
     path = require('path'),
@@ -88,7 +88,7 @@ describe('pm2deploy', function () {
 
       // Remove deployed files
       function (callback) {
-        fs.unlink('/tmp/grunt-pm2-deploy', callback);
+        rimraf('/tmp/grunt-pm2-deploy', callback);
       }
     ], done);
   });
