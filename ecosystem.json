@@ -3,7 +3,7 @@
     "name": "grunt-pm2-deploy",
     "script": "test/fixtures/server.js",
     "env_test" : {
-      "PORT": 10123
+      "PORT": 10123,
       "NODE_ENV": "test"
     }
   }],
