@@ -77,7 +77,7 @@ _Run this task with the `grunt pm2deploy` command._
   Type: `String`  
   Default: 'ecosystem.json'
 
-  ecosystem file name.
+  ecosystem file name. `require`-able files (*.js, *.json) can be used.
 
 ## Tests
 
