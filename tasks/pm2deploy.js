@@ -10,7 +10,7 @@ var fs = require('fs'),
 
 module.exports = function(grunt) {
 
-  grunt.registerTask('pm2deploy', 
+  grunt.registerTask('pm2deploy',
     'Deploy application with `pm2 deploy` command',
     function (target) {
 
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         defaultConfig: {},
         ecosystemFile: 'ecosystem.json',
       });
-     
+
       var ecosystemFile = path.resolve(options.ecosystemFile);
 
       // Check if files exist
@@ -30,9 +30,9 @@ module.exports = function(grunt) {
         return false;
       }
 
-      var ecosystem = extend(true, {}, options.ecosystem, 
+      var ecosystem = extend(true, {}, options.ecosystem,
                              JSON.parse(fs.readFileSync(ecosystemFile)));
-      
+
       var deployConf = ecosystem.deploy;
       if (!target || !deployConf[target]) {
 
@@ -44,50 +44,50 @@ module.exports = function(grunt) {
           'Available targets: [ %s ]', Object.keys(deployConf).join(', ')
         );
 
-        return false; 
+        return false;
       }
 
       Object.keys(options.defaultConfig).forEach(function (key) {
         if (deployConf[target][key] === undefined) {
-          deployConf[target][key] = options.defaultConfig[key]; 
-        } 
+          deployConf[target][key] = options.defaultConfig[key];
+        }
       });
 
       async.series([
-        
+
         // Ensure the remote server is set up
         function (callback) {
 
           grunt.log.ok('Ensure all remote servers are set up...');
 
           var targetConf = deployConf[target];
-        
+
           var hosts = Array.isArray(targetConf.host) ? targetConf.host
                                                      : [targetConf.host];
 
           var port = targetConf.port || '22';
 
           async.eachSeries(hosts, function (host, cb) {
-            
-            var cmd = format('ssh -o "StrictHostKeyChecking no" -p %s %s@%s ' + 
+
+            var cmd = format('ssh -o "StrictHostKeyChecking no" -p %s %s@%s ' +
                              '"[ -d %s/current ] || echo setup"',
                              port, targetConf.user, host, targetConf.path);
-            
+
             exec(cmd, function (err, stdout, stderr) {
 
               if (err) {
                 grunt.log.warn('cmd failed: %s', cmd);
                 grunt.log.warn(stderr);
                 return cb(new Error(format('exit code = %d', err.code)));
-              } 
-          
-              var needToSetup = stdout.indexOf('setup') !== -1;
-              
-              if (!needToSetup) {
-                return cb(); 
               }
-              
-              grunt.log.ok('Set up app on remote location: %s@%s:%s', 
+
+              var needToSetup = stdout.indexOf('setup') !== -1;
+
+              if (!needToSetup) {
+                return cb();
+              }
+
+              grunt.log.ok('Set up app on remote location: %s@%s:%s',
                            targetConf.user, host, targetConf.path);
 
               var confArg = extend(true, {}, deployConf);
@@ -104,7 +104,7 @@ module.exports = function(grunt) {
 
           deploy.deployForEnv(deployConf, target, [], function (err) {
             if (typeof err === 'number') {
-              err = new Error('exit code = ' + err); 
+              err = new Error('exit code = ' + err);
             }
 
             return callback(err);
