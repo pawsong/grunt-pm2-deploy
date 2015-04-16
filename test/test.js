@@ -46,6 +46,34 @@ describe('pm2deploy', function () {
     });
   }
 
+  function testServerResponse (port, done) {
+
+    async.waterfall([
+
+      function (callback) {
+        request('http://127.0.0.1:' + port, callback);
+      },
+      function (response, body, callback) {
+        if (response.statusCode !== 200) {
+          return callback(
+            new Error('Invalid statusCode: ' + response.statusCode)
+          );
+        }
+
+        try {
+          body = JSON.parse(body);
+          expect(body).to.be.deep.equal({
+            env: 'test'
+          });
+        } catch(e) {
+          return callback(e);
+        }
+
+        return callback();
+      }
+    ], done);
+  }
+
   before(function (done) {
 
     async.waterfall([
@@ -68,47 +96,50 @@ describe('pm2deploy', function () {
     ], done);
   });
 
-  describe('#grunt-task', function () {
+  describe('with ecosystem.json', function () {
 
-    it('should deploy server', function (done) {
+    before(function () {
+      grunt.config.set('pm2deploy.options.ecosystemFile', 'ecosystem.json');
+    });
 
-      runTask.task('pm2deploy:test', grunt.config.get('pm2deploy')).run(done);
+    describe('#grunt-task', function () {
+      it('should deploy server', function (done) {
+        runTask.task('pm2deploy:test', grunt.config.get('pm2deploy')).run(done);
+      });
+    });
+
+    describe('#deployed-server', function () {
+      it('should return correct response', function (done) {
+        testServerResponse(10123, done);
+      });
+    });
+
+    after(function (done) {
+      cleanUp(done);
     });
   });
 
-  describe('#deployed-server', function () {
+  describe('with ecosystem.js', function () {
 
-    it('should return correct response', function (done) {
+    before(function () {
+      grunt.config.set('pm2deploy.options.ecosystemFile', 'ecosystem.js');
+    });
 
-      async.waterfall([
+    describe('#grunt-task', function () {
+      it('should deploy server', function (done) {
+        runTask.task('pm2deploy:test', grunt.config.get('pm2deploy')).run(done);
+      });
+    });
 
-        function (callback) {
-          request('http://127.0.0.1:10123', callback);
-        },
+    describe('#deployed-server', function () {
+      it('should return correct response', function (done) {
+        testServerResponse(10124, done);
+      });
+    });
 
-        function (response, body, callback) {
-
-          if (response.statusCode !== 200) {
-            return callback(
-              new Error('Invalid statusCode: ' + response.statusCode)
-            );
-          }
-
-          try {
-            body = JSON.parse(body);
-            expect(body).to.be.deep.equal({
-              env: 'test'
-            });
-          } catch(e) {
-            return callback(e);
-          }
-
-          return callback();
-        }
-      ], done);
+    after(function (done) {
+      cleanUp(done);
     });
   });
-
-  after(cleanUp);
 });
 
