@@ -1,6 +1,6 @@
 'use strict';
 
-/* global describe, it, before, afterEach */
+/* global describe, it, before, after */
 
 var expect = require('chai').expect;
 
@@ -96,10 +96,6 @@ describe('pm2deploy', function () {
     ], done);
   });
 
-  afterEach(function (done) {
-    cleanUp(done);
-  });
-
   describe('with ecosystem.json', function () {
 
     before(function () {
@@ -118,6 +114,9 @@ describe('pm2deploy', function () {
       });
     });
 
+    after(function (done) {
+      cleanUp(done);
+    });
   });
 
   describe('with ecosystem.js', function () {
@@ -138,6 +137,9 @@ describe('pm2deploy', function () {
       });
     });
 
+    after(function (done) {
+      cleanUp(done);
+    });
   });
 });
 
