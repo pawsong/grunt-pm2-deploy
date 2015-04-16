@@ -46,12 +46,12 @@ describe('pm2deploy', function () {
     });
   }
 
-  function testServerResponse (done) {
+  function testServerResponse (port, done) {
 
     async.waterfall([
 
       function (callback) {
-        request('http://127.0.0.1:10123', callback);
+        request('http://127.0.0.1:' + port, callback);
       },
       function (response, body, callback) {
         if (response.statusCode !== 200) {
@@ -110,7 +110,7 @@ describe('pm2deploy', function () {
 
     describe('#deployed-server', function () {
       it('should return correct response', function (done) {
-        testServerResponse(done);
+        testServerResponse(10123, done);
       });
     });
 
@@ -133,7 +133,7 @@ describe('pm2deploy', function () {
 
     describe('#deployed-server', function () {
       it('should return correct response', function (done) {
-        testServerResponse(done);
+        testServerResponse(10124, done);
       });
     });
 
