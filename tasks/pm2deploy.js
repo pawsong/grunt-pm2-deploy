@@ -30,7 +30,8 @@ module.exports = function(grunt) {
         return false;
       }
 
-      var ecosystem = extend(true, {}, options.ecosystem, require(ecosystemFile));
+      var ecosystem = extend(true, {}, options.ecosystem,
+                             require(ecosystemFile));
 
       var deployConf = ecosystem.deploy;
       if (!target || !deployConf[target]) {
