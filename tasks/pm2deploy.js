@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       }
 
       var ecosystem = extend(true, {}, options.ecosystem,
-                             JSON.parse(fs.readFileSync(ecosystemFile)));
+                             require(ecosystemFile));
 
       var deployConf = ecosystem.deploy;
       if (!target || !deployConf[target]) {

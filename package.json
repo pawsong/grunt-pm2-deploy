@@ -1,6 +1,6 @@
 {
   "name": "grunt-pm2-deploy",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Deploy node application with pm2-deploy",
   "scripts": {
     "test": "grunt test"
